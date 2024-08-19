@@ -1,0 +1,284 @@
+/* 全体のスタイル */
+body {
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+    user-select: none;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    padding: 1em;
+    position: relative;
+}
+
+header img {
+    width: 230px;
+    margin: 6px;
+}
+
+.login-button {
+    position: relative;
+}
+
+.login-button a {
+    text-decoration: none;
+    color: #000;
+    border-radius: 20px;
+    padding: 10px 15px;
+    border: solid 1px;
+    transition: all 0.5s;
+    margin-top: -5px;
+}
+
+.login-button a:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.profile-icon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.profile-icon img {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+}
+
+.profile-menu {
+    display: none;
+    position: absolute;
+    margin-top: 10px;
+    top: 105%;
+    right: 10px; /* 右端に寄りすぎないように調整 */
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 220px;
+    z-index: 1000;
+}
+
+.profile-menu a {
+    display: block;
+    padding: 0.8em 1em;
+    color: #000;
+    border: none;
+    border-radius: 0; /* 初期値として設定 */
+    text-decoration: none;
+}
+
+.profile-menu a:hover {
+    background-color: #f5f5f5;
+    color: #000;
+    border-radius: 3px !important; /* 角を少し丸くする */
+}
+
+/* スタイル調整 */
+.welcome {
+    background-color: #f0f4f8;
+    padding: 0 5px;
+    border-radius: 10px;
+    cursor: default;
+    user-select: none;
+}
+
+.welcome-message {
+    font-size: 15px;
+}
+
+.game-list h2 {
+    text-align: left;
+    margin-bottom: -30px;
+}
+
+.game-list {
+    display: block;
+}
+
+.game-items a {
+    text-decoration: none;
+    color: #000;
+}
+
+.game-items-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.game-items p {
+    width: 200px;
+}
+
+.game-items {
+    border: solid 1px;
+    border-color: #dcdcdc;
+    margin-right: 8px;
+    margin-bottom: 18px;
+    border-radius: 5px;
+    padding-left: 6px;
+    max-width: 300px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.game-items:hover {
+    background-color: #f0f4f8;
+}
+
+.subsc-follow {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.subsc-button a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.subsc-button a:hover {
+    text-decoration: underline;
+}
+
+.about {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.about-title {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+footer {
+    background-color: #f5f5f5;
+    color: #000;
+    padding: 1em;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.social-link a {
+    color: #000;
+    text-decoration: none;
+    margin: 0 0.5em;
+}
+
+.social-link a:hover {
+    text-decoration: underline;
+}
+
+/* メディアクエリ */
+@media (max-width: 600px) {
+    .profile-icon img {
+        height: 30px;
+        width: 30px;
+    }
+
+    .profile-menu {
+        width: 150px;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header img {
+        width: 150px;
+        margin: 10px 0;
+    }
+
+    .login-button {
+        margin: 10px 0;
+    }
+
+    .login-button a {
+        padding: 8px 12px;
+    }
+
+    .login-button a:hover {
+        background-color: #f5f5f5;
+        color: #000;
+    }
+
+    .welcome-message {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .game-list h2 {
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 2px;
+    }
+
+    .game-items {
+        width: 90%;
+        max-width: none;
+    }
+
+    .game-items p {
+        width: auto;
+    }
+
+    .subsc-follow {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .about-title {
+        text-align: center;
+        margin-left: 0;
+    }
+
+    footer {
+        padding: 1em 0;
+    }
+
+    .login-button {
+        margin: 0;
+    }
+
+    .profile-menu {
+        min-width: 120px;
+    }
+
+    .profile-icon {
+        width: 35px;
+        height: 35px;
+    }
+
+    .profile-menu a {
+        padding: 10px;
+        font-size: 14px;
+    }
+        .profile-menu {
+        width: 150px;
+        top: 100%; /* メニューがプロフィールアイコンの直下に表示されるように */
+        right: 0; /* プロフィールアイコンの右端に合わせる */
+    }
+
+    .profile-icon {
+        width: 35px;
+        height: 35px;
+    }
+
+    .profile-menu a {
+        padding: 10px;
+        font-size: 14px;
+    }
+}

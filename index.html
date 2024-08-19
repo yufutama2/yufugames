@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+<head>
+    <link rel="icon" href="favicon.ico">
+    <meta charset="UTF-8">
+    <meta property="og:url" content="https://yufugames.com">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ホーム | YUFUGAMES">
+    <meta property="og:site_name" content="YUFUGAMES">
+    <meta name="description" content="YUFUGAMESの公式サイトです。YUFUTAMAが開発しているゲームを掲載しています。">
+    <meta name="keywords" content="ゆふゲーム,ゆふゲームズ,YufuGames,YUFUGAMES">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>ホーム | YUFUGAMES</title>
+</head>
+<body>
+<header>
+    <img src="YufuGames(beside).png" alt="YUFUGAMES">
+</header>
+<div class="welcome">
+    <p class="welcome-message">YUFUGAMESへようこそ！YUFUGAMESでは、ジャンルを問わずいろんなゲームが無料でプレイできます。</p>
+</div>
+<div class="game-list">
+    <h2 class="about-title">ゲーム一覧</h2>
+    <div class="game-items-container">
+        <div class="game-items"><a href="https://yufugames.com/game/2048">
+            <p class="game-title">2048</p>
+            <p class="game-desc">2048とは、同じ数字のタイルを合体させて2048を目指すパズルゲームです。</p>
+        </div></a>
+        <div class="game-items">
+            <p class="game-title">ゲーム2(準備中)</p>
+            <p class="game-desc">このゲームは現在、公開するための準備を行っております。</p>
+        </div>
+        <div class="game-items">
+            <p class="game-title">ゲーム3(準備中)</p>
+            <p class="game-desc">このゲームは現在、公開するための準備を行っております。</p>
+        </div>
+    </div>
+</div>
+<div class="about">
+    <h2 class="about-title">ゆふたまって？</h2>
+    <p>ゆふたまとは、このウェブサイトの管理人をしている人。あとYouTubeやXなどもやっている。</p>
+</div>
+<div class="subsc-follow">
+    <h2 class="about-title">登録とフォローもよろしく！</h2>
+    <p>僕、ゆふたまは、これからも頑張って活動を続けてまいりますので、応援のほうよろしくお願いいたします！そして、登録とフォローも忘れずに！</p>
+</div>
+<footer>
+    <p>&copy; 2024 YUFUGAMES All Rights Reserved.</p>
+    <div class="social-link">
+        <a href="https://twitter.com/yuftm_official" target="_blank" rel="noopener noreferrer">Twitter(現X)</a>
+        <a href="https://www.youtube.com/@yufutama" target="_blank" rel="noopener noreferrer">YouTube</a>
+    </div>
+</footer>
+<script>
+/* JavaScript for profile menu toggle */
+document.addEventListener('DOMContentLoaded', function() {
+    const profileIcon = document.querySelector('.profile-icon');
+    const profileMenu = document.querySelector('.profile-menu');
+
+    profileIcon.addEventListener('click', function() {
+        profileMenu.style.display = profileMenu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // ページのどこかをクリックしたときにメニューを閉じる
+    document.addEventListener('click', function(event) {
+        if (!profileIcon.contains(event.target) && !profileMenu.contains(event.target)) {
+            profileMenu.style.display = 'none';
+        }
+    });
+});
+</script>
+</body>
+</html>
