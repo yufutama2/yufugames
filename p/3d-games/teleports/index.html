@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>転送準備完了 | 3D Games</title>
+    <style>
+        body {
+            background-color: #fff;
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        main {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .m-t {
+            font-size: 22px;
+            margin-top: 30px;
+        }
+
+        .loading-dots {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .loading-dots div {
+            position: absolute;
+            top: 33px;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: #333;
+            animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+
+        .loading-dots div:nth-child(1) {
+            left: 8px;
+            animation: loadingDots1 0.6s infinite;
+        }
+
+        .loading-dots div:nth-child(2) {
+            left: 8px;
+            animation: loadingDots2 0.6s infinite;
+        }
+
+        .loading-dots div:nth-child(3) {
+            left: 32px;
+            animation: loadingDots2 0.6s infinite;
+        }
+
+        .loading-dots div:nth-child(4) {
+            left: 56px;
+            animation: loadingDots3 0.6s infinite;
+        }
+
+        @keyframes loadingDots1 {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes loadingDots3 {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(0);
+            }
+        }
+
+        @keyframes loadingDots2 {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(24px, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="title">3D Games</div>
+    </header>
+    <main>
+        <p class="m-t" id="statusMessage">転送の準備を行っています</p>
+        <p class="m-te" id="explanationMessage">しばらくお待ちください。転送の準備を行っています。</p>
+        <div class="loading-dots" id="loadingAnimation">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </main>
+
+    <script>
+        // 15秒後にメッセージとアニメーションを変更する
+        setTimeout(function() {
+            document.getElementById("statusMessage").textContent = "転送準備が完了しました";
+            document.getElementById("explanationMessage").textContent = "転送の準備が完了しました。まもなく、転送を開始いたします。";
+            
+            // アニメーションを非表示にする
+            document.getElementById("loadingAnimation").style.display = 'none';
+        }, 20000);
+    </script>
+</body>
+</html>
