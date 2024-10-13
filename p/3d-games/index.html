@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>ホーム | 3D Games</title>
+</head>
+<body>
+    <header>
+        <p class="title">3D Games</p>
+    </header>
+
+    <div class="main">
+        <p class="main-t">ゲームのジャンルを選択してください</p>
+        <div class="genre">
+            <button class="escape" onclick="showOptions('escapeOptions')">脱出系</button>
+            <button class="battle" onclick="showOptions('battleOptions')">戦闘系</button>
+            <button class="e-a-b" onclick="showOptions('eabOptions')">脱出戦闘系</button>
+        </div>
+
+        <div id="escapeOptions" class="options">
+            <p>難易度を選択してください</p>
+            <ul>
+                <li onclick="redirectToPage()">イージー</li>
+                <li onclick="redirectToPage()">ノーマル</li>
+                <li onclick="redirectToPage()">ハード</li>
+                <li onclick="showPopup()">エクストラ</li>
+            </ul>
+        </div>
+
+        <div id="battleOptions" class="options">
+            <p>難易度を選択してください</p>
+            <ul>
+                <li onclick="redirectToPage()">イージー</li>
+                <li onclick="redirectToPage()">ノーマル</li>
+                <li onclick="redirectToPage()">ハード</li>
+                <li onclick="showPopup()">エクストラ</li>
+            </ul>
+        </div>
+
+        <div id="eabOptions" class="options">
+            <p>難易度を選択してください</p>
+            <ul>
+                <li onclick="redirectToPage()">イージー</li>
+                <li onclick="redirectToPage()">ノーマル</li>
+                <li onclick="redirectToPage()">ハード</li>
+                <li onclick="showPopup()">エクストラ</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ポップアップのHTML -->
+    <div id="popup" class="popup-overlay">
+        <div class="popup-content">
+            <p>難易度がエクストラの場合、パスワードの確認が必要です</p>
+            <input type="password" id="passwordInput" placeholder="パスワードを入力してください">
+            <button onclick="checkPassword()">OK</button>
+            <p id="errorMessage" class="error-message"></p>
+        </div>
+    </div>
+
+    <script>
+        function showOptions(optionId) {
+            // すべての選択肢を非表示にする
+            const options = document.querySelectorAll('.options');
+            options.forEach(option => {
+                option.style.display = 'none';
+            });
+            // クリックされたボタンに対応する選択肢を表示
+            document.getElementById(optionId).style.display = 'block';
+        }
+
+        function redirectToPage() {
+            // ページ転移
+            window.location.href = 'https://yufugames.com/p/3d-games/teleports';
+        }
+
+        function showPopup() {
+            // ポップアップを表示
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value;
+            const errorMessage = document.getElementById('errorMessage');
+            if (password === 'satou021') {
+                // パスワードが正しければページ転移
+                window.location.href = 'https://yufugames.com/p/3d-games/teleports';
+            } else {
+                // パスワードが間違っていたらエラーメッセージを表示
+                errorMessage.textContent = 'パスワードが違います';
+            }
+        }
+    </script>
+</body>
+</html>
