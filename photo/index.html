@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画像の回転と縮小ツール</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; 
+            background-color: #f0f0f0; 
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2 {
+            text-align: center; 
+            color: #333; 
+        }
+        #canvas {
+            border: 1px solid #333; 
+            display: block;
+            margin: 0 auto; 
+            background-color: #fff; 
+        }
+        .toggle-switch {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0; 
+        }
+        .toggle-button {
+            background-color: #ddd; 
+            border: 1px solid #ccc; 
+            border-radius: 5px; 
+            margin-right: 10px;
+            padding: 10px 20px; 
+            cursor: pointer; 
+            transition: background-color 0.3s; 
+        }
+        #fileInput {
+            display: block; 
+            margin: 0 auto; 
+        }
+        .toggle-button.selected {
+            background-color: rgb(76, 164, 251); 
+            color: white; 
+        }
+        .operation {
+            text-align: center; 
+            margin: 20px 0; 
+        }
+        input[type="file"],
+        input[type="number"],
+        button {
+            padding: 10px; 
+            margin: 10px; 
+            border: 1px solid #ccc; 
+            border-radius: 5px; 
+            font-size: 16px; 
+        }
+        button {
+            background-color: rgb(76, 164, 251); 
+            color: white; 
+            cursor: pointer; 
+        }
+        button:hover {
+            background-color: rgb(19, 134, 249); 
+        }
+        #errorMsg {
+            color: red; 
+            text-align: center; 
+        }
+        #downloadBtn {
+            display: block; 
+            margin: 0 auto; 
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>画像の回転・縮小ツール</h1>
+
+    <input type="file" id="fileInput"/>
+
+    <div class="toggle-switch">
+        <div id="scaleBtn" class="toggle-button selected">画像縮小</div>
+        <div id="rotateBtn" class="toggle-button">画像回転</div>
+    </div>
+
+    <h2>操作</h2>
+    <div class="operation">
+        <div id="scaleSection">
+            <label for="scale">縮小倍率:</label>
+            <input type="number" id="scale" value="1" step="0.1" min="0.1" max="2" />
+            <button id="applyScaleBtn">サイズ変更</button>
+        </div>
+
+        <div id="rotateSection" style="display:none;">
+            <label for="rotation">回転角度 (°):</label>
+            <input type="number" id="rotation" value="0" />
+            <button id="applyRotateBtn">回転</button>
+        </div>
+    </div>
+
+    <canvas id="canvas" width="600" height="400"></canvas>
+    
+    <button id="downloadBtn" style="display:none;">ダウンロード</button>
+    
+    <div id="errorMsg"></div> 
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const errorMsg = document.getElementById('errorMsg');
+        const scaleBtn = document.getElementById('scaleBtn');
+        const rotateBtn = document.getElementById('rotateBtn');
+        const scaleSection = document.getElementById('scaleSection');
+        const rotateSection = document.getElementById('rotateSection');
+        let img = new Image();
+        let imageLoaded = false; 
+        let currentRotation = 0; 
+        let currentScale = 1; 
+
+        fileInput.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (!file) {
+                errorMsg.textContent = '画像ファイルを選択してください。';
+                imageLoaded = false; 
+                return;
+            }
+            img.src = URL.createObjectURL(file);
+            img.onload = function() {
+                imageLoaded = true; 
+                errorMsg.textContent = ''; 
+                drawImage(); 
+            };
+            img.onerror = function () {
+                errorMsg.textContent = '画像の読み込みに失敗しました。';
+                imageLoaded = false; 
+            };
+        });
+
+        function drawImage() {
+            if (!imageLoaded) {
+                return;
+            }
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height); 
+
+            const scaledWidth = img.width * currentScale;
+            const scaledHeight = img.height * currentScale;
+
+            const maxWidth = 600;
+            const maxHeight = 400;
+
+            let finalWidth, finalHeight;
+
+            if (scaledWidth > maxWidth || scaledHeight > maxHeight) {
+                const widthRatio = maxWidth / scaledWidth;
+                const heightRatio = maxHeight / scaledHeight;
+                const minRatio = Math.min(widthRatio, heightRatio);
+                finalWidth = scaledWidth * minRatio;
+                finalHeight = scaledHeight * minRatio;
+            } else {
+                finalWidth = scaledWidth;
+                finalHeight = scaledHeight;
+            }
+
+            canvas.width = finalWidth;
+            canvas.height = finalHeight;
+
+            ctx.save(); 
+            ctx.translate(finalWidth / 2, finalHeight / 2); 
+            ctx.rotate(currentRotation * Math.PI / 180); 
+            ctx.drawImage(img, -finalWidth / 2, -finalHeight / 2, finalWidth, finalHeight);
+            ctx.restore(); 
+        }
+
+        scaleBtn.addEventListener('click', function () {
+            scaleBtn.classList.add('selected'); 
+            rotateBtn.classList.remove('selected'); 
+            scaleSection.style.display = 'block'; 
+            rotateSection.style.display = 'none'; 
+        });
+
+        rotateBtn.addEventListener('click', function () {
+            rotateBtn.classList.add('selected'); 
+            scaleBtn.classList.remove('selected'); 
+            rotateSection.style.display = 'block'; 
+            scaleSection.style.display = 'none'; 
+        });
+
+        document.getElementById('applyRotateBtn').addEventListener('click', function () {
+            if (!imageLoaded) {
+                errorMsg.textContent = '画像が読み込まれていません。';
+                return;
+            }
+
+            currentRotation = document.getElementById('rotation').value; 
+            drawImage(); 
+
+            downloadBtn.style.display = 'block';
+            errorMsg.textContent = ''; 
+        });
+
+        document.getElementById('applyScaleBtn').addEventListener('click', function () {
+            if (!imageLoaded) {
+                errorMsg.textContent = '画像が読み込まれていません。';
+                return;
+            }
+
+            currentScale = document.getElementById('scale').value; 
+            drawImage(); 
+
+            downloadBtn.style.display = 'block';
+            errorMsg.textContent = ''; 
+        });
+
+        downloadBtn.addEventListener('click', function () {
+            const link = document.createElement('a');
+            link.download = 'modified_image.png';
+            // 圧縮率を指定（0.1から1.0の範囲、1.0は最高画質）
+            const quality = 0.7; // ここで品質を設定
+            link.href = canvas.toDataURL('image/png', quality); 
+            link.click(); 
+        });
+    </script>
+</body>
+</html>
