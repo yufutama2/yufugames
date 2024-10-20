@@ -138,6 +138,47 @@ header img {
     background-color: #f0f4f8;
 }
 
+.toul-list {
+    display: block;
+}
+
+.toul-list h2 {
+    text-align: left;
+    margin-bottom: -30px;
+}
+
+.toul-items a {
+    text-decoration: none;
+    color: #000;
+}
+
+.toul-items-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.toul-items p {
+    width: 215px;
+}
+
+.toul-items {
+    border: solid 1px;
+    border-color: #dcdcdc;
+    margin-right: 8px;
+    margin-bottom: 18px;
+    border-radius: 5px;
+    padding-left: 6px;
+    max-width: 300px;
+    cursor: pointer;
+    transition: all 0.3s;  
+}
+
+.toul-items:hover {
+    background-color: #f0f4f8;
+}
+
 .subsc-follow {
     margin-top: 50px;
     margin-bottom: 20px;
@@ -162,6 +203,9 @@ header img {
     margin-bottom: 15px;
     color: #333;
 }
+.about p{
+    margin-top: 30px;
+}
 
 footer {
     background-color: #f5f5f5;
@@ -181,8 +225,12 @@ footer {
     text-decoration: underline;
 }
 
+.subsc-follow p{
+    margin-top: 30px;
+} 
+
 /* メディアクエリ */
-@media (max-width: 600px) {
+@media (max-width: 670px) {
     .profile-icon img {
         height: 30px;
         width: 30px;
@@ -232,6 +280,21 @@ footer {
     }
 
     .game-items p {
+        width: auto;
+    }
+
+    .toul-list h2{
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 2px;
+    }
+
+    .toul-items {
+        width: 90%;
+        max-width: none;
+    }
+
+    .toul-items p{
         width: auto;
     }
 
