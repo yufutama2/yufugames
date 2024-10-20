@@ -1,0 +1,127 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #faf8ef;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+#title-screen {
+    text-align: center;
+}
+
+#game-container.hidden, #game-over.hidden, #title-screen.hidden {
+    display: none;
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#game-board {
+    width: 500px;
+    height: 500px;
+    background-color: #bbada0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.grid-cell {
+    width: 80px;
+    height: 80px;
+    background-color: #cdc1b4;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #776e65;
+    position: absolute;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* スコアとタイマーのスタイル */
+#score, #timer {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+/* ゲームオーバーのスタイル */
+.hidden {
+    display: none;
+}
+
+#game-over {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    z-index: 1000;
+}
+
+#game-over .overlay {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 10px;
+}
+
+#restart-btn, #start-btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.result {
+    display: flex;
+}
+#score {
+    margin-right: 14px;
+}
+@media (max-width: 600px) {
+    #game-board {
+        width: 90vw;
+        height: 90vw;
+    }
+
+    .grid-cell {
+        width: calc((100% - 40px) / 5);
+        height: calc((100% - 40px) / 5);
+        font-size: 4vw;
+    }
+
+    #score, #timer {
+        font-size: 18px;
+    }
+
+    #restart-btn, #start-btn {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
