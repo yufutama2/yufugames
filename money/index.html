@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ウォレット - Puppet Government</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet"> <!-- フォント -->
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span>Puppet Government</span>
+    </div>
+    <div id="user-info">堀口結生 様</div>
+  </header>
+  
+  <h1>NGY（人形円）ウォレット</h1>
+  <p id="balance">残高: <span id="current-balance">100000</span> NGY</p>
+  <button id="pay-button">支払う</button>
+  <button id="deposit-button">入金</button>
+
+  <!-- 支払いモーダル -->
+  <div id="pay-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('pay-modal')">&times;</span>
+      <h2>何円支払いますか？</h2>
+      <input type="number" id="pay-amount" placeholder="金額を入力">
+      <button onclick="processPayment()">支払う</button>
+    </div>
+  </div>
+
+  <!-- 入金モーダル -->
+  <div id="deposit-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('deposit-modal')">&times;</span>
+      <h2>入金方法を選択してください</h2>
+      <select id="deposit-method">
+        <option value="bank">銀行口座から入金</option>
+      </select>
+      <input type="number" id="deposit-amount" placeholder="金額を入力">
+      <button onclick="processDeposit()">入金</button>
+    </div>
+  </div>
+
+  <!-- 完了モーダル -->
+  <div id="complete-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('complete-modal')">&times;</span>
+      <h2 id="complete-message">お支払いが完了しました。</h2>
+    </div>
+  </div>
+
+  <audio id="payment-sound" src="tan_tan_payment_sound.mp3"></audio>
+  <script src="script.js"></script>
+</body>
+</html>
